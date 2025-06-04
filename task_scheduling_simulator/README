@@ -1,0 +1,7 @@
+# Feature: Task Scheduling Simulator
+## Goal
+    - showcase round-robin, preemptive, and cooperative scheduling with multiple tasks
+## Features
+    - create multiple tasks with different priorities
+    - use `vTaskDelay()` and `vTaskDelayUntil()` to demonstrate time-based scheduling
+    - log task activity to show how the scheduler works
