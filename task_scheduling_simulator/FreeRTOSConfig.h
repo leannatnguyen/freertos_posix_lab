@@ -1,7 +1,29 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-#define configUSE_PREEMPTION                    1
+/* ==== Scheduler Mode Switch ==== */
+/* Pass -DSCHEDULER_MODE=N in the compiler flags or default to mode 2 (round-robin) */
+#ifndef SCHEDULER_MODE
+#define SCHEDULER_MODE 2
+#endif
+
+#if SCHEDULER_MODE == 0
+    /* Cooperative scheduling */
+    #define configUSE_PREEMPTION 0
+    #define configUSE_TIME_SLICING 0
+#elif SCHEDULER_MODE == 1
+    /* Preemptive scheduling without time slicing */
+    #define configUSE_PREEMPTION 1
+    #define configUSE_TIME_SLICING 0
+#elif SCHEDULER_MODE == 2
+    /* Preemptive scheduling with time slicing (round-robin) */
+    #define configUSE_PREEMPTION 1
+    #define configUSE_TIME_SLICING 1
+#else
+    #error "Invalid SCHEDULER_MODE. Must be 0 (cooperative), 1 (preemptive), or 2 (round-robin)."
+#endif
+
+/* ==== Standard FreeRTOS Config ==== */
 #define configUSE_IDLE_HOOK                     0
 #define configUSE_TICK_HOOK                     0
 #define configCPU_CLOCK_HZ                      (1000000)
@@ -19,9 +41,10 @@
 #define configCHECK_FOR_STACK_OVERFLOW          0
 #define configUSE_MALLOC_FAILED_HOOK            0
 
-// POSIX port required settings
+/* ==== POSIX Port Required Setting ==== */
 #define configUSE_POSIX_ERRNO                   1
 
+/* ==== API Function Inclusion ==== */
 #define INCLUDE_vTaskDelay                      1   
 
 #endif /* FREERTOS_CONFIG_H */

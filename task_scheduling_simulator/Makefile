@@ -1,6 +1,24 @@
-TARGET = scheduler
+# Default to round-robin if not specified
+MODE ?= roundrobin
+
+ifeq ($(MODE),cooperative)
+    SCHEDULER_MODE = 0
+    TARGET = scheduler_cooperative
+else ifeq ($(MODE),preemptive)
+    SCHEDULER_MODE = 1
+    TARGET = scheduler_preemptive
+else ifeq ($(MODE),roundrobin)
+    SCHEDULER_MODE = 2
+    TARGET = scheduler_roundrobin
+else
+    $(error Invalid MODE: must be cooperative, preemptive, or roundrobin)
+endif
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic -std=c99 -pthread
+CFLAGS += -I. -I../freertos/FreeRTOS/Source/include \
+          -I../freertos/FreeRTOS/Source/portable/ThirdParty/GCC/Posix \
+          -I../freertos/FreeRTOS/Source/portable/MemMang \
+          -DSCHEDULER_MODE=$(SCHEDULER_MODE)
 
 # Base paths
 FREERTOS_DIR = ../freertos/FreeRTOS

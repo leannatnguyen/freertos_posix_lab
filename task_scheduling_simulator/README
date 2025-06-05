@@ -1,11 +1,11 @@
 # Feature: Task Scheduling Simulator
 ## Goal
-    - showcase round-robin, preemptive, and cooperative scheduling with multiple tasks
+- showcase round-robin, preemptive, and cooperative scheduling with multiple tasks
 ## Features
-    - create multiple tasks with different priorities
-        - 3 task functions:
-            1. Low Priority 
-            2. Medium Priority
-            3. High Priority
-    - use `vTaskDelay()` and `vTaskDelayUntil()` to demonstrate time-based scheduling
-    - log task activity to show how the scheduler works
+- create multiple tasks with different priorities
+    - 3 task functions:
+        1. Low Priority 
+        2. Medium Priority
+        3. High Priority
+ - use `vTaskDelay()` and `vTaskDelayUntil()` to demonstrate time-based scheduling
+ - log task activity to show how the scheduler works
