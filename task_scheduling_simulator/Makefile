@@ -15,6 +15,7 @@ INCLUDES = \
 # Source files
 SOURCES = \
   main.c \
+  task_functions.c \
   $(FREERTOS_DIR)/Source/tasks.c \
   $(FREERTOS_DIR)/Source/queue.c \
   $(FREERTOS_DIR)/Source/list.c \
