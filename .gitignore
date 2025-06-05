@@ -1,3 +1,6 @@
 demo/
 .DS_Store
 task_scheduling_simulator/scheduler
+task_scheduling_simulator/scheduler_preemptive
+task_scheduling_simulator/scheduler_roundrobin
+task_scheduling_simulator/scheduler_cooperative
